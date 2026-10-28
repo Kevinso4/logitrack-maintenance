@@ -5,10 +5,10 @@ name: CI-CD maintenance
 on:
   push:
     branches: [main]
-    paths: ["services/maintenance/**", "services/common/**", "services/requirements.txt", "services/Dockerfile", ".github/workflows/maintenance.yml"]
+    paths: ["maintenance/**", "common/**", "requirements.txt", "Dockerfile", ".github/workflows/deploy.yml"]
   pull_request:
     branches: [main]
-    paths: ["services/maintenance/**", "services/common/**", "services/requirements.txt", "services/Dockerfile"]
+    paths: ["maintenance/**", "common/**", "requirements.txt", "Dockerfile"]
   workflow_dispatch:
 
 permissions:
@@ -20,9 +20,9 @@ jobs:
     uses: Kevinso4/logitrack-pipelines/.github/workflows/ci.yml@main
     with:
       service-name: maintenance
-      directorio: services
-      imagen: ghcr.io/kevinso4/tracklogi-maintenance
-      desplegar: false
+      directorio: "."
+      imagen: ghcr.io/kevinso4/logitrack-maintenance
+      desplegar: true
       url: https://tracklogi-maintenance.onrender.com
       render-service-id: srv-daqqfe17lnhs73embsl0
     secrets: inherit
